@@ -34,7 +34,7 @@ module.exports.getProjectData = async (octokit, eventUrl, project) => {
                  }
              }
              repository {
-                 projects( search: "${project}", first: 10, states: [OPEN] ) {
+                 projects( first: 10, states: [OPEN] ) {
                      nodes {
                          name
                          id
