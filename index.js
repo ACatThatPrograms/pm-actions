@@ -1,6 +1,7 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 const { default: axios } = require("axios");
+const { getProjectData } = require('./queries/projectQuery');
 
 // Github URL pieces
 const urlParse =
@@ -24,7 +25,9 @@ const urlParse =
             closedColumnName: core.getInput("closed_column_name"),
             repoToken: core.getInput("repo_token"),
             // Not supplied by user's action
+            eventUrl: github.context.payload.html_url,
             ownerTypeQuery: null,
+            projectData: null,
             projectOwnerName: null,
             projectNumber: null,
             projectId: null,
@@ -34,6 +37,10 @@ const urlParse =
 
         // Setup octokit
         actionConfig.octokit = github.getOctokit(actionConfig.repoToken);
+
+        // Backfill projectData
+        actionConfig.projectData = await getProjectData(actionConfig.octokit, actionConfig.eventUrl, );
+        console.log(actionConfig.projectData);
 
         // Relay action config to use
         core.notice("Checking event status...");
@@ -53,7 +60,6 @@ const urlParse =
         }
 
         // Fillout additional config object
-        console.log(urlMatch.groups?.ownerType)
         actionConfig.ownerTypeQuery = getOwnerTypeQuery(urlMatch.groups?.ownerType);
         actionConfig.projectOwnerName = urlMatch.groups?.ownerName;
         actionConfig.projectNumber = parseInt(urlMatch.groups?.projectNumber ?? '', 10);
