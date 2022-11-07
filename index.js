@@ -23,9 +23,12 @@ const urlParse =
             reviewColumnName: core.getInput("review_column_name"),
             closedColumnName: core.getInput("closed_column_name"),
             repoToken: core.getInput("repo_token"),
+            // Not supplied by user's action
             ownerTypeQuery: null,
             projectOwnerName: null,
             projectNumber: null,
+            projectId: null,
+            contentId: null,
             actionPayload: github.context.payload,
         };
 
@@ -40,7 +43,7 @@ const urlParse =
         core.notice(`Using review_column_name: ${actionConfig.reviewColumnName}`);
         core.notice(`Using closed_column_name: ${actionConfig.closedColumnName}`);
         core.notice(`Repo token found?: ${actionConfig.repoToken !== "empty"}`);
-        // core.notice(`Event Payload: ${JSON.stringify(actionConfig.actionPayload, false, 2)}`);
+        core.notice(`Event Payload: ${JSON.stringify(actionConfig.actionPayload, false, 2)}`);
 
         const urlMatch = actionConfig.projectUrl.match(urlParse);
         if (!urlMatch) {
@@ -76,8 +79,14 @@ const urlParse =
             }
         )
 
-        console.log(idResp)
+        const projectId = idResp[ownerTypeQuery]?.projectV2.id;
+        const contentId = issue?.node_id;
 
+        // Backfill content object
+        actionConfig.projectId = projectId;
+        actionConfig.contentId = contentId;
+
+        // Choose and enact on task
         if (!!actionConfig.actionPayload.issue) {
             switch (actionConfig.actionPayload.action) {
                 case "opened": await issueOpened(actionConfig); break
@@ -93,6 +102,7 @@ const urlParse =
 
 
 async function issueOpened(actionConfig) {
+    await actionConfig.octokit.query(``)
     console.log("ISSUE OPENED");
 }
 async function issueReOpened(actionConfig) {
