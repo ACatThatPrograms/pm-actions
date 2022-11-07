@@ -102,7 +102,7 @@ async function graphqlReq (actionConfig) {
 
 }
 
-export function getOwnerTypeQuery(ownerType) {
+function getOwnerTypeQuery(ownerType) {
     const ownerTypeQuery = ownerType === 'orgs' ? 'organization' : ownerType === 'users' ? 'user' : null;
     if (!ownerTypeQuery) {
       throw new Error(`Unsupported ownerType: ${ownerType}. Must be one of 'orgs' or 'users'`)
