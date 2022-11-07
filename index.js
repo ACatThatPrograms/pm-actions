@@ -37,6 +37,7 @@ const urlParse =
 
         // Setup octokit
         actionConfig.octokit = github.getOctokit(actionConfig.repoToken);
+        console.log(github.context.payload)
 
         // Backfill projectData
         actionConfig.projectData = await getProjectData(actionConfig.octokit, actionConfig.eventUrl, );
