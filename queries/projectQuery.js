@@ -48,7 +48,7 @@ module.exports.getProjectData = async (octokit, eventUrl, project) => {
                  }
                  owner {
                      ... on ProjectOwner {
-                         projects( search: "${project}", first: 10, states: [OPEN] ) {
+                         projects( first: 10, states: [OPEN] ) {
                              nodes {
                                  name
                                  id
