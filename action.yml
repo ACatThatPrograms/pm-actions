@@ -1,5 +1,34 @@
 name: "Monitor/Update Project Board"
 description: "Track issues / pull requests to update project board as needed"
+inputs:
+  project_name:
+    description: 'The name of the project board'
+    required: true
+    default: 'empty'
+  project_url:
+    description: 'The url to the project board'
+    required: true
+    default: 'empty'
+  new_column_name:
+    description: 'The column for new issues to be placed into'
+    required: true
+    default: 'Backlog'
+  assign_column_name:
+    description: 'The column for assigned issues to be moved into'
+    required: true
+    default: 'In Progress'
+  review_column_name:
+    description: 'The column for PR request reviews that link issues to be moved into'
+    required: true
+    default: 'In Review'
+  closed_column_name:
+    description: 'The column for closed issues to be moved into'
+    required: true
+    default: 'Done'
+  repo_token:
+    description: 'The PAT for running Github API requests'
+    required: true
+    default: 'empty'
 runs: 
-  using: "node12"
+  using: "node16"
   main: "index.js"
