@@ -8,7 +8,7 @@
  */
 module.exports.getProjectData = async (octokit, projectId) => {
     console.log("Getting ProjectV2 ID:", projectId)
-    const idResp = await octokit.graphql(this.projectQuery(), projectId);
+    const idResp = await octokit.graphql(this.projectQuery(projectId));
     return idResp;
 }
 
