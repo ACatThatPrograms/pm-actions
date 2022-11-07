@@ -21,7 +21,7 @@ module.exports.getProjectData = async (octokit, eventUrl, forIssue, project) => 
  module.exports.projectQuery = (eventUrl, forIssue, project) =>
  `query {
      resource( url: "${eventUrl}" ) {
-         ... on ${eventUrl.contains("issues") ? 'Issue' : 'PullRequest'} {
+         ... on ${eventUrl.indexOf("issues") !== -1 ? 'Issue' : 'PullRequest'} {
              projectCards {
                  nodes {
                      id
