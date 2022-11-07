@@ -40,7 +40,7 @@ const urlParse =
 
         // Backfill projectData
         actionConfig.projectData = await getProjectData(actionConfig.octokit, actionConfig.eventUrl, );
-        console.log(actionConfig.projectData);
+        console.log(JSON.stringify(actionConfig.projectData, false, 2));
 
         // Relay action config to use
         core.notice("Checking event status...");
