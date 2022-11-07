@@ -25,7 +25,7 @@ const urlParse =
             closedColumnName: core.getInput("closed_column_name"),
             repoToken: core.getInput("repo_token"),
             // Not supplied by user's action
-            eventUrl: github.context.payload.html_url,
+            eventUrl: github.context.payload?.issue?.html_url || github.context.payload?.pull_request.html_url,
             ownerTypeQuery: null,
             projectData: null,
             projectOwnerName: null,
