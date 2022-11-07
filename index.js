@@ -40,16 +40,14 @@ const urlParse =
         core.notice(`Using review_column_name: ${actionConfig.reviewColumnName}`);
         core.notice(`Using closed_column_name: ${actionConfig.closedColumnName}`);
         core.notice(`Repo token found?: ${actionConfig.repoToken !== "empty"}`);
-        core.notice(`Event Payload: ${JSON.stringify(actionConfig.actionPayload, false, 2)}`);
+        // core.notice(`Event Payload: ${JSON.stringify(actionConfig.actionPayload, false, 2)}`);
 
-        const urlMatch = actionConfig.projectUrl.match(actionConfig.projectUrl);
+        const urlMatch = actionConfig.projectUrl.match(urlParse);
         if (!urlMatch) {
             throw new Error(
               `Invalid project URL: ${projectUrl}. Project URL should match the format https://github.com/<orgs-or-users>/<ownerName>/projects/<projectNumber>`
             )
         }
-
-        console.log(urlMatch)
 
         // Fillout additional config object
         console.log(urlMatch.groups?.ownerType)
