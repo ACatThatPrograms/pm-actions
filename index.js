@@ -39,7 +39,7 @@ const urlParse =
         actionConfig.octokit = github.getOctokit(actionConfig.repoToken);
 
         // Backfill projectData
-        actionConfig.projectData = await getProjectData(actionConfig.octokit, actionConfig.eventUrl, actionConfig.eventUrl, actionConfig.projectName );
+        actionConfig.projectData = await getProjectData(actionConfig.octokit, actionConfig.eventUrl, actionConfig.projectName );
         console.log(JSON.stringify(actionConfig.projectData, false, 2));
 
         // Relay action config to use

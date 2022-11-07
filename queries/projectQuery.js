@@ -6,8 +6,9 @@
  * @param {string} forIssue - Is this for an issue?
  * @param {string} project - The project to find
  */
-module.exports.getProjectData = async (octokit, eventUrl, forIssue, project) => {
-    const idResp = await octokit.graphql(this.projectQuery(eventUrl, forIssue, project));
+module.exports.getProjectData = async (octokit, eventUrl, project) => {
+    console.log(eventUrl, project)
+    const idResp = await octokit.graphql(this.projectQuery(eventUrl, project));
     return idResp;
 }
 
@@ -18,7 +19,7 @@ module.exports.getProjectData = async (octokit, eventUrl, forIssue, project) => 
  * @param {string} forIssue - Is this for an issue?
  * @param {string} project - The project to find
  */
- module.exports.projectQuery = (eventUrl, forIssue, project) =>
+ module.exports.projectQuery = (eventUrl, project) =>
  `query {
      resource( url: "${eventUrl}" ) {
          ... on ${eventUrl.indexOf("issues") !== -1 ? 'Issue' : 'PullRequest'} {
