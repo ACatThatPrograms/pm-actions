@@ -86,7 +86,7 @@ const urlParse =
             }
         )
 
-        const projectId = idResp[ownerTypeQuery]?.projectV2.id;
+        const projectId = idResp[actionConfig.ownerTypeQuery]?.projectV2.id;
         const contentId = issue?.node_id;
 
         // Backfill content object
