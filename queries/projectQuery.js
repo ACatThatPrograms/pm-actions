@@ -19,7 +19,7 @@ module.exports.getProjectData = async (octokit, projectId) => {
  */
  module.exports.projectQuery = (projectId) =>
  `  query{
-    node(id: $projectId}) {
+    node(id: ${projectId}}) {
       ... on ProjectV2 {
         fields(first: 20) {
           nodes {
