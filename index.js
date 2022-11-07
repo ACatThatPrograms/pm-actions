@@ -50,6 +50,7 @@ const urlParse =
         }
 
         // Fillout additional config object
+        console.log(urlMatch.groups?.ownerType)
         actionConfig.ownerTypeQuery = getOwnerTypeQuery(urlMatch.groups?.ownerType);
         actionConfig.projectOwnerName = urlMatch.groups?.ownerName;
         actionConfig.projectNumber = parseInt(urlMatch.groups?.projectNumber ?? '', 10);
