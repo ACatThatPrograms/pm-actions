@@ -6,7 +6,7 @@
  * @param {string} forIssue - Is this for an issue?
  * @param {string} project - The project to find
  */
-module.exports.getProjectData = (octokit, eventUrl, forIssue, project) => {
+module.exports.getProjectData = async (octokit, eventUrl, forIssue, project) => {
     const idResp = await actionConfig.octokit.graphql(this.projectQuery(eventUrl, forIssue, project));
     return idResp;
 }
