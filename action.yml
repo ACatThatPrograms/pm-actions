@@ -1,0 +1,5 @@
+name: "Monitor/Update Project Board"
+description: "Track issues / pull requests to update project board as needed"
+runs: 
+  using: "node12"
+  main: "index.js"
