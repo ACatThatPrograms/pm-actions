@@ -27,9 +27,12 @@ const urlParse =
             projectOwnerName: null,
             projectNumber: null,
             actionPayload: github.context.payload,
-            octokit: github.getOctokit(ghToken)
         };
 
+        // Setup octokit
+        actionConfig.octokit = github.getOctokit(actionConfig.repoToken);
+
+        // Relay action config to use
         core.notice("Checking event status...");
         core.notice(`Using project_name: ${actionConfig.projectName}`);
         core.notice(`Using new_column_name: ${actionConfig.newColumnName}`);
