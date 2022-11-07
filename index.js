@@ -50,7 +50,7 @@ const urlParse =
         core.notice(`Using review_column_name: ${actionConfig.reviewColumnName}`);
         core.notice(`Using closed_column_name: ${actionConfig.closedColumnName}`);
         core.notice(`Repo token found?: ${actionConfig.repoToken !== "empty"}`);
-        core.notice(`Event Payload: ${JSON.stringify(actionConfig.actionPayload, false, 2)}`);
+        // core.notice(`Event Payload: ${JSON.stringify(actionConfig.actionPayload, false, 2)}`);
 
         const urlMatch = actionConfig.projectUrl.match(urlParse);
         if (!urlMatch) {
@@ -86,11 +86,11 @@ const urlParse =
         )
 
         const projectId = idResp[actionConfig.ownerTypeQuery]?.projectV2.id;
-        const contentId = issue?.node_id;
+        // const contentId = issue?.node_id;
 
         // Backfill content object
         actionConfig.projectId = projectId;
-        actionConfig.contentId = contentId;
+        // actionConfig.contentId = contentId;
 
         // Choose and enact on task
         if (!!actionConfig.actionPayload.issue) {
