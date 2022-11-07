@@ -7,7 +7,7 @@
  * @param {string} project - The project to find
  */
 module.exports.getProjectData = async (octokit, projectId) => {
-    console.log(eventUrl, project)
+    console.log("Getting ProjectV2 ID:", projectId)
     const idResp = await octokit.graphql(this.projectQuery(), projectId);
     return idResp;
 }
