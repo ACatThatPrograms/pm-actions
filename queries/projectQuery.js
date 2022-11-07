@@ -7,7 +7,7 @@
  * @param {string} project - The project to find
  */
 module.exports.getProjectData = async (octokit, eventUrl, forIssue, project) => {
-    const idResp = await actionConfig.octokit.graphql(this.projectQuery(eventUrl, forIssue, project));
+    const idResp = await octokit.graphql(this.projectQuery(eventUrl, forIssue, project));
     return idResp;
 }
 
