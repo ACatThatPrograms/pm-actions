@@ -92,6 +92,8 @@ const urlParse =
         actionConfig.projectId = projectId;
         // actionConfig.contentId = contentId;
 
+        console.log(projectId);
+
         // Choose and enact on task
         if (!!actionConfig.actionPayload.issue) {
             switch (actionConfig.actionPayload.action) {
