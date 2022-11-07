@@ -49,6 +49,8 @@ const urlParse =
             )
         }
 
+        console.log(urlMatch)
+
         // Fillout additional config object
         console.log(urlMatch.groups?.ownerType)
         actionConfig.ownerTypeQuery = getOwnerTypeQuery(urlMatch.groups?.ownerType);
