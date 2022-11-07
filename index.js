@@ -59,6 +59,8 @@ const urlParse =
             throw new Error('Unable to extract project details from provided project url. Verify the URL is correct.')
         }
 
+        const projectOwnerName = actionConfig.projectOwnerName;
+        const projectNumber = actionConfig.projectNumber;
         // First, use the GraphQL API to request the project's node ID.
         const idResp = await actionConfig.octokit.graphql(
             `query getProject($projectOwnerName: String!, $projectNumber: Int!) {
