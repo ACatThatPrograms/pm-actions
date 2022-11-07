@@ -42,7 +42,7 @@ const urlParse =
         core.notice(`Repo token found?: ${actionConfig.repoToken !== "empty"}`);
         core.notice(`Event Payload: ${JSON.stringify(actionConfig.actionPayload, false, 2)}`);
 
-        const urlMatch = projectUrl.match(actionConfig.projectUrl);
+        const urlMatch = actionConfig.projectUrl.match(actionConfig.projectUrl);
         if (!urlMatch) {
             throw new Error(
               `Invalid project URL: ${projectUrl}. Project URL should match the format https://github.com/<orgs-or-users>/<ownerName>/projects/<projectNumber>`
