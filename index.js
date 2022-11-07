@@ -38,10 +38,6 @@ const urlParse =
         // Setup octokit
         actionConfig.octokit = github.getOctokit(actionConfig.repoToken);
 
-        // Backfill projectData
-        actionConfig.projectData = await getProjectData(actionConfig.octokit, actionConfig.eventUrl, actionConfig.projectName );
-        console.log(JSON.stringify(actionConfig.projectData, false, 2));
-
         // Relay action config to use
         core.notice("Checking event status...");
         core.notice(`Using project_name: ${actionConfig.projectName}`);
@@ -86,13 +82,10 @@ const urlParse =
         )
 
         const projectId = idResp[actionConfig.ownerTypeQuery]?.projectV2.id;
-        // const contentId = issue?.node_id;
 
-        // Backfill content object
-        actionConfig.projectId = projectId;
-        // actionConfig.contentId = contentId;
-
-        console.log(projectId);
+        // Backfill projectData
+        actionConfig.projectData = await getProjectData(actionConfig.octokit, projectId );
+        console.log(JSON.stringify(actionConfig.projectData, false, 2));
 
         // Choose and enact on task
         if (!!actionConfig.actionPayload.issue) {
